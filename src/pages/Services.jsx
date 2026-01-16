@@ -9,11 +9,21 @@ import sanitationImg from '../assets/sanitation_hygiene_1768327387017.png';
 // Using logo or hero as fallback for manpower since generation failed, or reuse commercial which has people
 import manpowerImg from '../assets/commercial_cleaning_1768327306633.png';
 import heroBanner from '../assets/hero-banner.png';
+import BookingModal from '../components/BookingModal';
 
 const Services = () => {
     const { t, i18n } = useTranslation();
     const [activeFaq, setActiveFaq] = useState(null);
     const [activeCategory, setActiveCategory] = useState('All');
+    const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+    const [selectedServiceForBooking, setSelectedServiceForBooking] = useState('');
+    const [activeCard, setActiveCard] = useState(null);
+
+    const openBookingModal = (e, serviceTitle) => {
+        e.stopPropagation(); // Prevent card toggle when booking
+        setSelectedServiceForBooking(serviceTitle);
+        setIsBookingModalOpen(true);
+    };
 
     const toggleFaq = (index) => {
         setActiveFaq(activeFaq === index ? null : index);
@@ -222,48 +232,91 @@ const Services = () => {
                     </h2>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
+                <div className="flex flex-col md:flex-row gap-4 md:gap-3 lg:gap-4 h-auto md:h-[650px] w-full items-stretch">
                     {filteredServices.map((service, index) => (
-                        <div key={service.id} className={`group relative rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden transition-all duration-500 hover:-translate-y-2 h-[450px] sm:h-[500px] ${index === 0 && activeCategory === 'All' ? 'md:col-span-2' : ''}`}>
+                        <div
+                            key={service.id}
+                            onClick={() => setActiveCard(activeCard === service.id ? null : service.id)}
+                            className={`group relative rounded-[2.5rem] overflow-hidden transition-all duration-700 ease-in-out cursor-pointer
+                                h-[450px] sm:h-[550px] md:h-full
+                                w-full md:w-auto md:flex-1 md:hover:flex-[4]
+                                ${activeCard === service.id ? 'md:flex-[4]' : ''}`}
+                        >
+                            {/* Background Image & Overlay */}
                             <div className="absolute inset-0 bg-gray-900 z-0">
                                 <img
                                     src={service.image}
                                     alt={service.title}
-                                    className="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity duration-700"
+                                    className={`w-full h-full object-cover transition-all duration-700 ${activeCard === service.id ? 'opacity-40 scale-110' : 'opacity-70 group-hover:opacity-40 group-hover:scale-110'}`}
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent opacity-90"></div>
                             </div>
 
-                            <div className="relative z-10 h-full flex flex-col justify-end p-6 sm:p-8 md:p-10">
-                                <div className="transform transition-transform duration-500 group-hover:-translate-y-4">
-                                    <div className="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/10 text-[10px] sm:text-xs font-medium text-white mb-3 sm:mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                                        {t(`services.categories.${service.category.toLowerCase()}`)}
+                            {/* Content Wrapper */}
+                            <div className="relative z-10 h-full flex flex-col p-6 sm:p-8 md:p-10 pointer-events-none">
+                                {/* Top Navigation Icon (↗) - Re-enable pointer events for the icon container if needed, but the card click handles it */}
+                                <div className="flex justify-end mb-4">
+                                    <div className="w-10 sm:w-12 h-10 sm:h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 text-white group-hover:bg-lime-500 group-hover:border-lime-500 transition-all duration-500 shadow-lg">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className={`h-5 w-5 transform transition-transform duration-500 ${activeCard === service.id ? 'rotate-0' : '-rotate-45 group-hover:rotate-0'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                        </svg>
                                     </div>
-                                    <h3 className="text-2xl sm:text-3xl font-serif text-white mb-2 leading-tight">{service.title}</h3>
-                                    <div className="w-12 h-1 bg-lime-500 rounded-full mb-4 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 delay-200"></div>
-                                    <p className="text-gray-300 text-xs sm:text-sm leading-relaxed max-w-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-300 transform translate-y-4 group-hover:translate-y-0">
-                                        {service.description}
-                                    </p>
                                 </div>
 
-                                <div className="mt-4 sm:mt-6 flex flex-wrap gap-2 transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-400">
-                                    {service.items.map((item, idx) => (
-                                        <span key={idx} className="text-[10px] sm:text-xs font-semibold bg-white text-gray-900 px-3 py-1 rounded-full shadow-sm">
-                                            {item}
-                                        </span>
-                                    ))}
-                                </div>
+                                {/* Main Title Area */}
+                                <div className={`flex-grow flex flex-col min-h-0 transition-all duration-700 ${activeCard === service.id ? 'justify-end' : 'justify-center md:group-hover:justify-end'}`}>
 
-                                <button className="absolute top-4 sm:top-6 right-4 sm:right-6 w-10 sm:w-12 h-10 sm:h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 text-white group-hover:bg-lime-500 group-hover:border-lime-500 transition-colors duration-300 shadow-lg">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transform -rotate-45 group-hover:rotate-0 transition-transform duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                    </svg>
-                                </button>
+                                    {/* Desktop-only Vertical Title (When narrow) */}
+                                    <div className={`hidden md:block absolute top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap transition-all duration-700 ${activeCard === service.id ? 'opacity-0 scale-95' : 'opacity-100 group-hover:opacity-0 group-hover:scale-95'}`}>
+                                        <h3 className="text-3xl lg:text-4xl font-serif text-white/90 font-medium tracking-tight -rotate-90">
+                                            {service.title.split(' ')[0]}
+                                        </h3>
+                                    </div>
+
+                                    {/* Expanded Content Area with fixed content */}
+                                    <div className={`pointer-events-auto flex flex-col transition-all duration-700 ${activeCard === service.id ? 'translate-y-0 opacity-100' : 'md:translate-y-8 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100'}`}>
+                                        <div className="flex flex-col">
+                                            <div className="inline-block self-start px-3 py-1 rounded-full bg-lime-500 text-[10px] sm:text-xs font-bold text-black mb-3 sm:mb-4 uppercase tracking-widest leading-none">
+                                                {t(`services.categories.${service.category.toLowerCase()}`)}
+                                            </div>
+                                            <h3 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-white mb-3 sm:mb-4 leading-tight font-medium tracking-tight">
+                                                {service.title}
+                                            </h3>
+
+                                            <div className={`transition-all duration-700 delay-100 ${activeCard === service.id ? 'opacity-100' : 'md:opacity-0 md:group-hover:opacity-100'}`}>
+                                                <p className="text-gray-300 text-sm sm:text-base leading-relaxed max-w-md mb-5 line-clamp-3">
+                                                    {service.description}
+                                                </p>
+
+                                                <div className="flex flex-wrap gap-2 mb-6 sm:mb-8">
+                                                    {service.items.slice(0, 4).map((item, idx) => (
+                                                        <span key={idx} className="text-[10px] sm:text-xs font-bold bg-white/10 backdrop-blur-md text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border border-white/10 whitespace-nowrap">
+                                                            {item}
+                                                        </span>
+                                                    ))}
+                                                </div>
+
+                                                <button
+                                                    onClick={(e) => openBookingModal(e, service.title)}
+                                                    className="w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 bg-lime-500 text-black font-extrabold rounded-2xl hover:bg-lime-400 transition-all duration-300 shadow-xl shadow-lime-900/20 active:scale-95 uppercase tracking-widest text-[10px] sm:text-xs"
+                                                >
+                                                    Book Now
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     ))}
                 </div>
             </div>
+
+            <BookingModal
+                isOpen={isBookingModalOpen}
+                onClose={() => setIsBookingModalOpen(false)}
+                selectedService={selectedServiceForBooking}
+            />
 
             {/* Why Choose Us Section - Bento Grid Style */}
             <div className="mt-24 sm:mt-40 max-w-7xl mx-auto px-6 sm:px-12 lg:px-24">
@@ -529,7 +582,7 @@ const Services = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 

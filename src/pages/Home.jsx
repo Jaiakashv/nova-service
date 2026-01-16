@@ -1,4 +1,7 @@
 import React, { useState, useRef } from 'react';
+import CleaningGame from '../components/CleaningGame';
+import BookingModal from '../components/BookingModal';
+
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import heroBanner from '../assets/hero-banner.png';
@@ -14,6 +17,11 @@ const Home = () => {
     const [selectedDate, setSelectedDate] = useState('');
     const [showCalendar, setShowCalendar] = useState(false);
     const [viewDate, setViewDate] = useState(new Date());
+    const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+
+    const handleBookNow = () => {
+        setIsBookingModalOpen(true);
+    };
 
     const daysInMonth = (year, month) => new Date(year, month + 1, 0).getDate();
     const firstDayOfMonth = (year, month) => new Date(year, month, 1).getDay();
@@ -254,12 +262,21 @@ const Home = () => {
                         {showCalendar && <CustomCalendar />}
                     </div>
 
-                    {/* See Details Button */}
-                    <button className="bg-[#a3d937] hover:bg-[#92c530] text-black font-semibold px-8 py-3 rounded-full transition-colors">
-                        {t('home.seeDetails')}
+                    {/* Book Now Button */}
+                    <button
+                        onClick={handleBookNow}
+                        className="bg-[#a3d937] hover:bg-[#92c530] text-black font-semibold px-8 py-3 rounded-full transition-colors"
+                    >
+                        Book Now
                     </button>
                 </div>
             </div>
+
+            <BookingModal
+                isOpen={isBookingModalOpen}
+                onClose={() => setIsBookingModalOpen(false)}
+                selectedService={selectedService ? t(`home.serviceOptions.${selectedService}`) : ''}
+            />
 
             {/* ================= OUR WORK SECTION ================= */}
             <div className="mt-40 mb-20 px-4 md:pl-40">
@@ -366,8 +383,22 @@ const Home = () => {
                 </div>
             </div>
 
-        </div>
+            {/* Interactive Game Section */}
+            <div className="mt-40 mb-20 px-4 md:pl-40">
+                <div className="flex flex-col items-center mb-16 text-center">
+                    <span className="text-lime-600 font-bold tracking-widest uppercase text-xs sm:text-sm mb-4">{t('home.game.interactiveExperience')}</span>
+                    <h2 className="text-5xl md:text-7xl font-black text-black leading-tight uppercase">
+                        {t('home.game.headingPrimary')} <br />
+                        <span className="italic font-light text-gray-700">{t('home.game.headingSecondary')}</span>
+                    </h2>
+                    <p className="max-w-md text-gray-500 text-sm leading-relaxed mt-6">
+                        {t('home.game.description')}
+                    </p>
+                </div>
+                <CleaningGame />
+            </div>
 
+        </div>
     );
 };
 

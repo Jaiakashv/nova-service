@@ -44,6 +44,19 @@ const resources = {
                     item02: "REGULAR CLEANING",
                     item03: "KITCHEN CLEANING",
                     explore: "25+ SERVICES YOU CAN EXPLORE"
+                },
+                game: {
+                    status: "Status",
+                    progress: "Cleaning",
+                    successTitle: "Great job!",
+                    successText: "This is how we clean professionally.",
+                    reset: "Reset Game",
+                    instruction: "DRAG",
+                    instructionSuffix: "to clean the surface",
+                    interactiveExperience: "Interactive Experience",
+                    headingPrimary: "Experience",
+                    headingSecondary: "Cleanliness",
+                    description: "Try our interactive window cleaning tool. See how we transform even the dirtiest surfaces!"
                 }
             },
             footer: {
@@ -243,6 +256,19 @@ const resources = {
                     item02: "REGELMÄSSIGE REINIGUNG",
                     item03: "KÜCHENREINIGUNG",
                     explore: "25+ DIENSTLEISTUNGEN ENTDECKEN"
+                },
+                game: {
+                    status: "Status",
+                    progress: "Reinigung",
+                    successTitle: "Gute Arbeit!",
+                    successText: "So reinigen wir professionell.",
+                    reset: "Spiel zurücksetzen",
+                    instruction: "ZIEHEN",
+                    instructionSuffix: "um die Oberfläche zu reinigen",
+                    interactiveExperience: "Interaktive Erfahrung",
+                    headingPrimary: "Erlebe",
+                    headingSecondary: "Sauberkeit",
+                    description: "Probieren Sie unser interaktives Fensterreinigungstool aus. Sehen Sie, wie wir selbst die schmutzigsten Oberflächen verwandeln!"
                 }
             },
             footer: {
