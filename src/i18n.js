@@ -68,7 +68,7 @@ const resources = {
                 premier: "PREMIER",
                 cleaning: "CLEANING",
                 copyright: "@NOVA SERVICE. ALL RIGHTS RESERVED",
-                design: "DESIGN BY ",
+                design: "Developed BY ",
                 designer: "LEPTOTECH.COM"
             },
             services: {
