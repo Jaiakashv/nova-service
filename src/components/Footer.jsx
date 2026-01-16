@@ -33,7 +33,12 @@ const Footer = () => {
                         <h2 className="text-4xl sm:text-5xl md:text-6xl font-black">{t('footer.premier')}</h2>
                         <div className="text-[10px] md:text-sm text-gray-500 font-bold uppercase tracking-wider flex flex-col sm:flex-row items-center gap-4 sm:gap-8">
                             <span>{t('footer.copyright')}</span>
-                            <span className="opacity-80">{t('footer.design')}<span className="text-lime-400">{t('footer.designer')}</span></span>
+                            <span className="opacity-80">
+                                {t('footer.design')}
+                                <a href="https://leptotech.in/" target="_blank" rel="noopener noreferrer" className="text-lime-400 hover:text-lime-300 transition-colors">
+                                    {t('footer.designer')}
+                                </a>
+                            </span>
                         </div>
                     </div>
 
