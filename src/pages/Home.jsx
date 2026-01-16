@@ -8,6 +8,7 @@ import heroBanner from '../assets/hero-banner.png';
 import commercialImg from '../assets/commercial_cleaning_1768327306633.png';
 import residentialImg from '../assets/residential_cleaning_1768327291773.png';
 import work1 from '../assets/work1.png';
+import cleaningVideo from '../assets/nova-watermark.mp4';
 
 const Home = () => {
     const { t } = useTranslation();
@@ -396,6 +397,31 @@ const Home = () => {
                     </p>
                 </div>
                 <CleaningGame />
+            </div>
+
+            {/* Video Showcase Section */}
+            <div className="mt-10 mb-20 px-4 md:pl-40 flex flex-col items-center">
+                <div className="text-center mb-12">
+                    <h2 className="text-4xl md:text-6xl font-black text-black leading-tight uppercase tracking-tight">
+                        {t('home.game.video.headingPrimary')} <span className="font-light text-gray-400">{t('home.game.video.headingHighlight')}</span>
+                        <br />
+                        {t('home.game.video.headingEnd')}
+                    </h2>
+                </div>
+
+                <div className="relative w-full max-w-4xl rounded-[2.5rem] overflow-hidden shadow-2xl group border-[8px] md:border-[12px] border-white bg-white">
+                    <video
+                        className="w-full h-auto object-cover rounded-[1.5rem]"
+                        src={cleaningVideo}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                    >
+                        Your browser does not support the video tag.
+                    </video>
+
+                </div>
             </div>
 
         </div>

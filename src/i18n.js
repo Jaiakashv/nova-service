@@ -56,7 +56,12 @@ const resources = {
                     interactiveExperience: "Interactive Experience",
                     headingPrimary: "Experience",
                     headingSecondary: "Cleanliness",
-                    description: "Try our interactive window cleaning tool. See how we transform even the dirtiest surfaces!"
+                    description: "Try our interactive window cleaning tool. See how we transform even the dirtiest surfaces!",
+                    video: {
+                        headingPrimary: "OUR BEST",
+                        headingHighlight: "CLEANING",
+                        headingEnd: "SERVICES"
+                    }
                 }
             },
             footer: {
@@ -268,7 +273,12 @@ const resources = {
                     interactiveExperience: "Interaktive Erfahrung",
                     headingPrimary: "Erlebe",
                     headingSecondary: "Sauberkeit",
-                    description: "Probieren Sie unser interaktives Fensterreinigungstool aus. Sehen Sie, wie wir selbst die schmutzigsten Oberflächen verwandeln!"
+                    description: "Probieren Sie unser interaktives Fensterreinigungstool aus. Sehen Sie, wie wir selbst die schmutzigsten Oberflächen verwandeln!",
+                    video: {
+                        headingPrimary: "UNSERE BESTEN",
+                        headingHighlight: "REINIGUNGS",
+                        headingEnd: "DIENSTLEISTUNGEN"
+                    }
                 }
             },
             footer: {
