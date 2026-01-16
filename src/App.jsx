@@ -1,24 +1,29 @@
-import React from 'react'
+import React, { Suspense, lazy } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
-import Home from './pages/Home'
-import About from './pages/About'
-import Services from './pages/Services'
-import Contact from './pages/Contact'
 import Footer from './components/Footer'
 import ScrollToTopButton from './components/ScrollToTopButton'
+import LoadingSpinner from './components/LoadingSpinner'
+
+// Lazy load pages
+const Home = lazy(() => import('./pages/Home'))
+const About = lazy(() => import('./pages/About'))
+const Services = lazy(() => import('./pages/Services'))
+const Contact = lazy(() => import('./pages/Contact'))
 
 function App() {
     return (
         <div className="min-h-screen bg-gray-50 flex flex-col">
             <Navbar />
             <main className="flex-grow pt-[80px]">
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/services" element={<Services />} />
-                    <Route path="/contact" element={<Contact />} />
-                </Routes>
+                <Suspense fallback={<LoadingSpinner />}>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/about" element={<About />} />
+                        <Route path="/services" element={<Services />} />
+                        <Route path="/contact" element={<Contact />} />
+                    </Routes>
+                </Suspense>
             </main>
             <Footer />
             <ScrollToTopButton />

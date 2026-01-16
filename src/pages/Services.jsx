@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense, lazy } from 'react';
 import { useTranslation } from 'react-i18next';
 import residentialImg from '../assets/residential_cleaning_1768327291773.png';
 import commercialImg from '../assets/commercial_cleaning_1768327306633.png';
@@ -9,7 +9,7 @@ import sanitationImg from '../assets/sanitation_hygiene_1768327387017.png';
 // Using logo or hero as fallback for manpower since generation failed, or reuse commercial which has people
 import manpowerImg from '../assets/commercial_cleaning_1768327306633.png';
 import heroBanner from '../assets/hero-banner.png';
-import BookingModal from '../components/BookingModal';
+const BookingModal = lazy(() => import('../components/BookingModal'));
 
 const Services = () => {
     const { t, i18n } = useTranslation();
@@ -312,11 +312,13 @@ const Services = () => {
                 </div>
             </div>
 
-            <BookingModal
-                isOpen={isBookingModalOpen}
-                onClose={() => setIsBookingModalOpen(false)}
-                selectedService={selectedServiceForBooking}
-            />
+            <Suspense fallback={null}>
+                <BookingModal
+                    isOpen={isBookingModalOpen}
+                    onClose={() => setIsBookingModalOpen(false)}
+                    selectedService={selectedServiceForBooking}
+                />
+            </Suspense>
 
             {/* Why Choose Us Section - Bento Grid Style */}
             <div className="mt-24 sm:mt-40 max-w-7xl mx-auto px-6 sm:px-12 lg:px-24">

@@ -1,6 +1,7 @@
-import React, { useState, useRef } from 'react';
-import CleaningGame from '../components/CleaningGame';
-import BookingModal from '../components/BookingModal';
+import React, { useState, useRef, Suspense, lazy } from 'react';
+const BookingModal = lazy(() => import('../components/BookingModal'));
+
+const CleaningGame = lazy(() => import('../components/CleaningGame'));
 
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -273,11 +274,13 @@ const Home = () => {
                 </div>
             </div>
 
-            <BookingModal
-                isOpen={isBookingModalOpen}
-                onClose={() => setIsBookingModalOpen(false)}
-                selectedService={selectedService ? t(`home.serviceOptions.${selectedService}`) : ''}
-            />
+            <Suspense fallback={null}>
+                <BookingModal
+                    isOpen={isBookingModalOpen}
+                    onClose={() => setIsBookingModalOpen(false)}
+                    selectedService={selectedService ? t(`home.serviceOptions.${selectedService}`) : ''}
+                />
+            </Suspense>
 
             {/* ================= OUR WORK SECTION ================= */}
             <div className="mt-40 mb-20 px-4 md:pl-40">
@@ -396,7 +399,9 @@ const Home = () => {
                         {t('home.game.description')}
                     </p>
                 </div>
-                <CleaningGame />
+                <Suspense fallback={<div className="h-60" />}>
+                    <CleaningGame />
+                </Suspense>
             </div>
 
             {/* Video Showcase Section */}
