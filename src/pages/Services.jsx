@@ -558,9 +558,14 @@ const Services = () => {
             {/* Premium CTA Section */}
             <div className="mt-24 sm:mt-40 mb-12 sm:mb-20 px-6 sm:px-12 lg:px-24">
                 <div className="relative rounded-[2rem] sm:rounded-[3rem] overflow-hidden bg-black text-white py-16 sm:py-24 px-6 md:px-20 text-center shadow-2xl">
-                    <div className="absolute inset-0 opacity-40 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
-                    <div className="absolute top-[-50%] left-[-20%] w-[800px] h-[800px] bg-lime-900/40 rounded-full blur-[150px] pointer-events-none"></div>
-                    <div className="absolute bottom-[-50%] right-[-20%] w-[800px] h-[800px] bg-emerald-900/30 rounded-full blur-[150px] pointer-events-none"></div>
+                    <div className="absolute inset-0">
+                        <img
+                            src="https://img.freepik.com/free-photo/man-cleaning-his-home_23-2148112482.jpg"
+                            alt="Background"
+                            className="w-full h-full object-cover opacity-50"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent"></div>
+                    </div>
 
                     <div className="relative z-10 max-w-3xl mx-auto space-y-6 sm:space-y-8">
                         <h2 className="text-3xl sm:text-5xl md:text-7xl font-serif text-white leading-tight tracking-tight">
