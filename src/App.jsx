@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import ScrollToTopButton from './components/ScrollToTopButton'
 import LoadingSpinner from './components/LoadingSpinner'
+import ScrollToTop from './components/ScrollToTop'
 
 // Lazy load pages
 const Home = lazy(() => import('./pages/Home'))
@@ -14,6 +15,7 @@ const Contact = lazy(() => import('./pages/Contact'))
 function App() {
     return (
         <div className="min-h-screen bg-gray-50 flex flex-col">
+            <ScrollToTop />
             <Navbar />
             <main className="flex-grow pt-[80px]">
                 <Suspense fallback={<LoadingSpinner />}>

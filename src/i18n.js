@@ -14,7 +14,71 @@ const resources = {
             about: {
                 title: "About Us",
                 subtitle: "Learn more about our company and our mission.",
-                content: "Nova Service is a leading provider of professional cleaning and maintenance solutions. We are dedicated to delivering high-quality services to both residential and commercial clients."
+                hero: {
+                    certified: "German Quality Certified",
+                    title: "About",
+                    titleHighlight: "Nova Service",
+                    subtitle: "Germany's premium cleaning service delivering eco-friendly excellence since 2015."
+                },
+                story: {
+                    title: "Our Story",
+                    text1: "Founded in Munich in",
+                    year: "2015",
+                    text2: ", Nova Service began with a simple mission: to deliver exceptional cleaning services that exceed expectations. What started as a small team has grown into one of Germany's most trusted cleaning brands.",
+                    text3: "Today, we serve residential and commercial clients across Germany, staying true to our values of quality, reliability, and environmental responsibility."
+                },
+                values: {
+                    title: "Our Values",
+                    items: [
+                        { title: "Quality", desc: "Uncompromising standards in every service" },
+                        { title: "Reliability", desc: "Consistent, dependable service you can trust" },
+                        { title: "Sustainability", desc: "Eco-friendly practices for a cleaner future" }
+                    ]
+                },
+                stats: {
+                    clients: "Happy Clients",
+                    experience: "Years Experience",
+                    staff: "Professional Staff",
+                    certified: "Insured & Certified",
+                    badge: "German Quality Certified"
+                },
+                transformation: {
+                    title: "Before & After: The Transformation",
+                    slideText: "Slide to see the difference Nova Service makes",
+                    before: "Before",
+                    after: "After",
+                    caption: "Before: Dusty condition → After: Nova Service professional cleaning"
+                },
+                whyChoose: {
+                    title: "Why Choose Nova Service",
+                    subtitle: "We combine expertise, eco-friendly practices, and German precision to deliver exceptional cleaning services.",
+                    features: [
+                        { title: "Trained Professionals", description: "Our team consists of certified cleaning experts with extensive training and experience." },
+                        { title: "Eco-Friendly Products", description: "We use environmentally safe cleaning products that are gentle on your space and the planet." },
+                        { title: "Affordable Pricing", description: "Competitive rates with transparent pricing and no hidden fees." },
+                        { title: "On-Time Service", description: "We respect your schedule and always arrive on time, every time." },
+                        { title: "Satisfaction Guarantee", description: "100% satisfaction guaranteed - we'll make it right if you're not happy." },
+                        { title: "Quality Certified", description: "Fully insured and certified to meet German quality standards." }
+                    ]
+                },
+                testimonials: {
+                    title: "What Our Clients Say",
+                    subtitle: "Trusted by houses worldwide",
+                    items: [
+                        { name: "Schmidt Family", location: "Munich", text: "Nova Service transformed our home. Their attention to detail is unmatched, and the team is always professional and courteous.", service: "Residential Cleaning" },
+                        { name: "TechHub GmbH", location: "Berlin", text: "We've been using Nova Service for our office for over a year. Consistent quality, reliable service, and excellent communication.", service: "Commercial Cleaning" },
+                        { name: "Maria Weber", location: "Hamburg", text: "The eco-friendly products were a game-changer for our family. Our home has never been cleaner or safer!", service: "Deep Cleaning" },
+                        { name: "Restaurant Goldener Löffel", location: "Frankfurt", text: "Outstanding service for our restaurant. They understand the specific needs of food service establishments.", service: "Commercial Cleaning" }
+                    ]
+                },
+                contact: {
+                    title: "Ready to Experience the",
+                    titleHighlight: "Nova Service Difference?",
+                    teamTitle: "Our Team",
+                    subtitle: "Join hundreds of satisfied customers across Germany who trust us for professional, reliable, and eco-friendly cleaning services.",
+                    quoteBtn: "Get Free Quote",
+                    contactBtn: "Contact Us"
+                }
             },
             home: {
                 title: "PREMIER",
@@ -231,7 +295,71 @@ const resources = {
             about: {
                 title: "Über uns",
                 subtitle: "Erfahren Sie mehr über unser Unternehmen und unsere Mission.",
-                content: "Nova Service ist ein führender Anbieter von professionellen Reinigungs- und Wartungslösungen. Wir widmen uns der Bereitstellung hochwertiger Dienstleistungen für Privat- und Geschäftskunden."
+                hero: {
+                    certified: "Deutsche Qualität zertifiziert",
+                    title: "Über",
+                    titleHighlight: "Nova Service",
+                    subtitle: "Deutschlands Premium-Reinigungsdienst liefert umweltfreundliche Exzellenz seit 2015."
+                },
+                story: {
+                    title: "Unsere Geschichte",
+                    text1: "Gegründet in München im Jahr",
+                    year: "2015",
+                    text2: ", begann Nova Service mit einer einfachen Mission: außergewöhnliche Reinigungsdienste zu liefern, die Erwartungen übertreffen. Was als kleines Team begann, hat sich zu einer der vertrauenswürdigsten Reinigungsmarken Deutschlands entwickelt.",
+                    text3: "Heute bedienen wir Privat- und Geschäftskunden in ganz Deutschland und bleiben unseren Werten Qualität, Zuverlässigkeit und Umweltverantwortung treu."
+                },
+                values: {
+                    title: "Unsere Werte",
+                    items: [
+                        { title: "Qualität", desc: "Kompromisslose Standards bei jedem Service" },
+                        { title: "Zuverlässigkeit", desc: "Konsistenter, verlässlicher Service, dem Sie vertrauen können" },
+                        { title: "Nachhaltigkeit", desc: "Umweltfreundliche Praktiken für eine sauberere Zukunft" }
+                    ]
+                },
+                stats: {
+                    clients: "Zufriedene Kunden",
+                    experience: "Jahre Erfahrung",
+                    staff: "Professionelles Personal",
+                    certified: "Versichert & Zertifiziert",
+                    badge: "Deutsche Qualität zertifiziert"
+                },
+                transformation: {
+                    title: "Vorher & Nachher",
+                    slideText: "Schieben Sie, um den Unterschied zu sehen",
+                    before: "Vorher",
+                    after: "Nachher",
+                    caption: "Vorher: Staubig → Nachher: Professionelle Reinigung durch Nova Service"
+                },
+                whyChoose: {
+                    title: "Warum Nova Service wählen",
+                    subtitle: "Wir kombinieren Fachwissen, umweltfreundliche Praktiken und deutsche Präzision, um außergewöhnliche Reinigungsdienste zu liefern.",
+                    features: [
+                        { title: "Geschulte Profis", description: "Unser Team besteht aus zertifizierten Reinigungsexperten mit umfangreicher Ausbildung und Erfahrung." },
+                        { title: "Umweltfreundliche Produkte", description: "Wir verwenden umweltsichere Reinigungsprodukte, die sanft zu Ihrem Raum und dem Planeten sind." },
+                        { title: "Erschwingliche Preise", description: "Wettbewerbsfähige Preise mit transparenter Preisgestaltung und ohne versteckte Gebühren." },
+                        { title: "Pünktlicher Service", description: "Wir respektieren Ihren Zeitplan und kommen immer pünktlich." },
+                        { title: "Zufriedenheitsgarantie", description: "100% Zufriedenheitsgarantie - wir machen es wieder gut, wenn Sie nicht zufrieden sind." },
+                        { title: "Qualität zertifiziert", description: "Voll versichert und zertifiziert nach deutschen Qualitätsstandards." }
+                    ]
+                },
+                testimonials: {
+                    title: "Was unsere Kunden sagen",
+                    subtitle: "Weltweit von Haushalten vertraut",
+                    items: [
+                        { name: "Familie Schmidt", location: "München", text: "Nova Service hat unser Zuhause verwandelt. Ihre Liebe zum Detail ist unübertroffen und das Team ist immer professionell und höflich.", service: "Privatreinigung" },
+                        { name: "TechHub GmbH", location: "Berlin", text: "Wir nutzen Nova Service seit über einem Jahr für unser Büro. Konstante Qualität, zuverlässiger Service und hervorragende Kommunikation.", service: "Gewerbereinigung" },
+                        { name: "Maria Weber", location: "Hamburg", text: "Die umweltfreundlichen Produkte waren ein Wendepunkt für unsere Familie. Unser Zuhause war noch nie sauberer oder sicherer!", service: "Tiefenreinigung" },
+                        { name: "Restaurant Goldener Löffel", location: "Frankfurt", text: "Hervorragender Service für unser Restaurant. Sie verstehen die spezifischen Bedürfnisse von Gastronomiebetrieben.", service: "Gewerbereinigung" }
+                    ]
+                },
+                contact: {
+                    title: "Bereit, den",
+                    titleHighlight: "Unterschied zu erleben?",
+                    teamTitle: "Unser Team",
+                    subtitle: "Schließen Sie sich hunderten zufriedener Kunden in ganz Deutschland an, die uns für professionelle, zuverlässige und umweltfreundliche Reinigungsdienste vertrauen.",
+                    quoteBtn: "Angebot einholen",
+                    contactBtn: "Kontaktieren Sie uns"
+                }
             },
             home: {
                 title: "PREMIER",
