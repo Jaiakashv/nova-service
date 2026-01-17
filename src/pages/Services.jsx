@@ -1,4 +1,5 @@
 import React, { useState, Suspense, lazy } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import residentialImg from '../assets/residential_cleaning_1768327291773.png';
 import commercialImg from '../assets/commercial_cleaning_1768327306633.png';
@@ -13,6 +14,7 @@ const BookingModal = lazy(() => import('../components/BookingModal'));
 
 const Services = () => {
     const { t, i18n } = useTranslation();
+    const navigate = useNavigate();
     const [activeFaq, setActiveFaq] = useState(null);
     const [activeCategory, setActiveCategory] = useState('All');
     const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
@@ -144,7 +146,10 @@ const Services = () => {
                         </p>
 
                         <div className="flex flex-wrap justify-center lg:justify-start gap-4 pt-4">
-                            <button className="group relative w-full sm:w-auto px-8 py-4 bg-gray-900 text-white rounded-full font-medium overflow-hidden shadow-2xl transition-all hover:scale-105 hover:shadow-lime-900/20">
+                            <button
+                                onClick={(e) => openBookingModal(e, 'General Service')}
+                                className="group relative w-full sm:w-auto px-8 py-4 bg-gray-900 text-white rounded-full font-medium overflow-hidden shadow-2xl transition-all hover:scale-105 hover:shadow-lime-900/20"
+                            >
                                 <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-lime-500 to-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                                 <span className="relative z-10 flex items-center justify-center gap-2">
                                     {t('services.hero.cta')}
@@ -153,7 +158,10 @@ const Services = () => {
                                     </svg>
                                 </span>
                             </button>
-                            <button className="w-full sm:w-auto px-8 py-4 bg-white/50 backdrop-blur-sm border border-white/60 text-gray-800 rounded-full font-medium hover:bg-white transition-all shadow-lg hover:shadow-xl">
+                            <button
+                                onClick={() => navigate('/about')}
+                                className="w-full sm:w-auto px-8 py-4 bg-white/50 backdrop-blur-sm border border-white/60 text-gray-800 rounded-full font-medium hover:bg-white transition-all shadow-lg hover:shadow-xl"
+                            >
                                 {t('services.hero.learnMore')}
                             </button>
                         </div>
@@ -577,7 +585,10 @@ const Services = () => {
                             {t('services.ctaSection.subtitle')}
                         </p>
                         <div className="pt-8 sm:pt-12 flex justify-center">
-                            <button className="relative group w-full sm:w-auto">
+                            <button
+                                onClick={(e) => openBookingModal(e, 'General Service')}
+                                className="relative group w-full sm:w-auto"
+                            >
                                 <div className="absolute -inset-1 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full opacity-70 blur-lg group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
                                 <div className="relative px-8 sm:px-12 py-4 bg-white rounded-full leading-none flex items-center justify-center">
                                     <span className="text-gray-900 font-bold text-base sm:text-lg tracking-wide group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-pink-600 group-hover:to-purple-600 transition-all duration-300">
