@@ -22,12 +22,12 @@ const InputField = ({ label, name, type, value, onChange, placeholder, icon, req
     </div>
 );
 
-const BookingModal = ({ isOpen, onClose, selectedService }) => {
+const BookingModal = ({ isOpen, onClose, selectedService, selectedDate }) => {
     const [formData, setFormData] = useState({
         name: '',
         phone: '',
         location: '',
-        date: '',
+        date: selectedDate || '',
         time: '',
         service: selectedService || ''
     });

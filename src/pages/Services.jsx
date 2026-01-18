@@ -322,6 +322,7 @@ const Services = () => {
 
             <Suspense fallback={null}>
                 <BookingModal
+                    key={`${selectedServiceForBooking}-${isBookingModalOpen}`}
                     isOpen={isBookingModalOpen}
                     onClose={() => setIsBookingModalOpen(false)}
                     selectedService={selectedServiceForBooking}

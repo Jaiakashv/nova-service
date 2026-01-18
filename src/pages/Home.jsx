@@ -276,9 +276,11 @@ const Home = () => {
 
             <Suspense fallback={null}>
                 <BookingModal
+                    key={`${selectedService}-${selectedDate}-${isBookingModalOpen}`}
                     isOpen={isBookingModalOpen}
                     onClose={() => setIsBookingModalOpen(false)}
                     selectedService={selectedService ? t(`home.serviceOptions.${selectedService}`) : ''}
+                    selectedDate={selectedDate}
                 />
             </Suspense>
 
