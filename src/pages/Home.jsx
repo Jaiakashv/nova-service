@@ -1,5 +1,6 @@
-import React, { useState, useRef, Suspense, lazy } from 'react';
-const BookingModal = lazy(() => import('../components/BookingModal'));
+import React, { useState, useRef, useEffect, Suspense, lazy } from 'react';
+import BookingModal from '../components/BookingModal';
+import CustomCalendar from '../components/CustomCalendar';
 
 const CleaningGame = lazy(() => import('../components/CleaningGame'));
 
@@ -25,69 +26,24 @@ const Home = () => {
         setIsBookingModalOpen(true);
     };
 
-    const daysInMonth = (year, month) => new Date(year, month + 1, 0).getDate();
-    const firstDayOfMonth = (year, month) => new Date(year, month, 1).getDay();
+    const calendarRef = useRef(null);
+    const serviceRef = useRef(null);
 
-    const months = [
-        "January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
-    ];
-
-    const CustomCalendar = () => {
-        const year = viewDate.getFullYear();
-        const month = viewDate.getMonth();
-        const totalDays = daysInMonth(year, month);
-        const startDay = firstDayOfMonth(year, month);
-
-        const prevMonth = () => setViewDate(new Date(year, month - 1, 1));
-        const nextMonth = () => setViewDate(new Date(year, month + 1, 1));
-
-        const handleDateSelect = (day) => {
-            const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-            setSelectedDate(dateStr);
-            setShowCalendar(false);
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (calendarRef.current && !calendarRef.current.contains(event.target)) {
+                setShowCalendar(false);
+            }
+            if (serviceRef.current && !serviceRef.current.contains(event.target)) {
+                setShowServiceDropdown(false);
+            }
         };
 
-        const days = [];
-        for (let i = 0; i < startDay; i++) days.push(null);
-        for (let i = 1; i <= totalDays; i++) days.push(i);
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
 
-        return (
-            <div className="absolute top-full left-0 mt-2 w-72 bg-white border border-gray-100 rounded-2xl shadow-2xl p-4 z-50 animate-in fade-in zoom-in duration-200">
-                <div className="flex items-center justify-between mb-4">
-                    <button onClick={prevMonth} className="p-1 hover:bg-gray-100 rounded-full transition-colors">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
-                    </button>
-                    <span className="font-bold text-gray-800">{months[month]} {year}</span>
-                    <button onClick={nextMonth} className="p-1 hover:bg-gray-100 rounded-full transition-colors">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                    </button>
-                </div>
-                <div className="grid grid-cols-7 gap-1 mb-2">
-                    {['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'].map(d => (
-                        <div key={d} className="text-center text-[10px] font-bold text-gray-400 uppercase">{d}</div>
-                    ))}
-                </div>
-                <div className="grid grid-cols-7 gap-1">
-                    {days.map((day, i) => (
-                        <div key={i} className="aspect-square flex items-center justify-center">
-                            {day && (
-                                <button
-                                    onClick={() => handleDateSelect(day)}
-                                    className={`w-full h-full flex items-center justify-center text-sm rounded-lg transition-colors
-                                        ${selectedDate === `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`
-                                            ? 'bg-[#a3d937] text-white font-bold'
-                                            : 'hover:bg-lime-50 text-gray-700'}`}
-                                >
-                                    {day}
-                                </button>
-                            )}
-                        </div>
-                    ))}
-                </div>
-            </div>
-        );
-    };
+
 
     {/* Star Component */ }
     const Stars = () => (
@@ -183,8 +139,11 @@ const Home = () => {
                     <div className="h-1 w-24 bg-[#ffd700]"></div>
                 </div>
 
-                <div className="flex items-center gap-3">
-                    <button className="w-12 h-12 rounded-full bg-[#a3d937] hover:bg-[#92c530] flex items-center justify-center transition-colors">
+                <div
+                    onClick={handleBookNow}
+                    className="flex items-center gap-3 cursor-pointer group"
+                >
+                    <button className="w-12 h-12 rounded-full bg-[#a3d937] group-hover:bg-[#92c530] flex items-center justify-center transition-colors">
                         <svg
                             width="24"
                             height="24"
@@ -198,7 +157,7 @@ const Home = () => {
                             <path d="M5 12h14M12 5l7 7-7 7" />
                         </svg>
                     </button>
-                    <span className="text-black font-semibold text-lg">
+                    <span className="text-black font-semibold text-lg group-hover:text-lime-600 transition-colors">
                         {t('home.minimal')}
                     </span>
                 </div>
@@ -211,9 +170,9 @@ const Home = () => {
                     {t('home.cta')}
                 </h2>
 
-                <div className="flex items-center gap-4 relative z-50">
+                <div className="flex items-center gap-4 relative z-10">
                     {/* Service Type Dropdown */}
-                    <div className="relative">
+                    <div className="relative" ref={serviceRef}>
                         <div
                             onClick={() => setShowServiceDropdown(!showServiceDropdown)}
                             className="flex items-center justify-between w-48 bg-gray-50 border border-gray-100 rounded-full px-4 py-3 cursor-pointer hover:bg-gray-100 transition-colors"
@@ -228,7 +187,7 @@ const Home = () => {
 
                         {/* Dropdown Menu */}
                         {showServiceDropdown && (
-                            <div className="absolute top-full left-0 mt-2 w-full bg-white border border-gray-100 rounded-xl shadow-xl overflow-hidden py-1 z-50">
+                            <div className="absolute top-full left-0 mt-2 w-full bg-white border border-gray-100 rounded-xl shadow-xl overflow-hidden py-1 z-20">
                                 {['residential', 'commercial', 'deep', 'move'].map((key) => (
                                     <div
                                         key={key}
@@ -246,7 +205,7 @@ const Home = () => {
                     </div>
 
                     {/* Select Date Input */}
-                    <div className="relative">
+                    <div className="relative" ref={calendarRef}>
                         <div
                             onClick={() => setShowCalendar(!showCalendar)}
                             className="relative flex items-center justify-between w-48 bg-gray-50 border border-gray-100 rounded-full px-4 py-3 cursor-pointer hover:bg-gray-100 transition-colors"
@@ -261,7 +220,17 @@ const Home = () => {
                                 <line x1="3" y1="10" x2="21" y2="10"></line>
                             </svg>
                         </div>
-                        {showCalendar && <CustomCalendar />}
+                        {showCalendar && (
+                            <div className="absolute top-full left-1/2 -translate-x-1/2 md:left-0 md:translate-x-0 mt-2 z-20">
+                                <CustomCalendar
+                                    selectedDate={selectedDate}
+                                    onDateSelect={(dateStr) => {
+                                        setSelectedDate(dateStr);
+                                        setShowCalendar(false);
+                                    }}
+                                />
+                            </div>
+                        )}
                     </div>
 
                     {/* Book Now Button */}
@@ -274,15 +243,13 @@ const Home = () => {
                 </div>
             </div>
 
-            <Suspense fallback={null}>
-                <BookingModal
-                    key={`${selectedService}-${selectedDate}-${isBookingModalOpen}`}
-                    isOpen={isBookingModalOpen}
-                    onClose={() => setIsBookingModalOpen(false)}
-                    selectedService={selectedService ? t(`home.serviceOptions.${selectedService}`) : ''}
-                    selectedDate={selectedDate}
-                />
-            </Suspense>
+            <BookingModal
+                key={`${selectedService}-${selectedDate}-${isBookingModalOpen}`}
+                isOpen={isBookingModalOpen}
+                onClose={() => setIsBookingModalOpen(false)}
+                selectedService={selectedService ? t(`home.serviceOptions.${selectedService}`) : ''}
+                selectedDate={selectedDate}
+            />
 
             {/* ================= OUR WORK SECTION ================= */}
             <div className="mt-40 mb-20 px-4 md:pl-40">
