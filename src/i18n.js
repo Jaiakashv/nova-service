@@ -191,6 +191,36 @@ const resources = {
                         title: "Man Power Supply",
                         description: "Reliable staffing solutions for your facility needs. We provide skilled and trained personnel for various roles.",
                         features: ["Skilled labor supply", "General cleaning staff", "Maintenance personnel"]
+                    },
+                    warehouseWorkers: {
+                        title: "Warehouse Workers",
+                        description: "Warehouse Workforce Supply - Efficient and reliable manpower for smooth warehouse operations. We provide trained workers for inventory handling, packing, loading, and dispatch to keep your supply chain running without delays.",
+                        features: ["Inventory handling", "Packing & sorting", "Loading & unloading"]
+                    },
+                    forkliftDrivers: {
+                        title: "Forklift Drivers",
+                        description: "Forklift Driver Supply - Certified and experienced forklift operators for safe and efficient material movement. Our drivers ensure proper handling of goods, reducing damage and improving operational speed.",
+                        features: ["Certified operators", "Material handling", "Warehouse logistics"]
+                    },
+                    constructionWorkers: {
+                        title: "Construction Workers",
+                        description: "Construction Manpower Supply - Skilled and semi-skilled workers for all types of construction projects. From residential to commercial sites, we provide reliable manpower to meet your project timelines.",
+                        features: ["Skilled labor", "Site workers", "Project support"]
+                    },
+                    servers: {
+                        title: "Servers (Hotel / Catering)",
+                        description: "Hospitality Staff Supply - Professional and well-trained servers for hotels, restaurants, and catering services. We ensure quality service, customer satisfaction, and smooth hospitality operations.",
+                        features: ["Hotel staff", "Event servers", "Catering support"]
+                    },
+                    eventAssistants: {
+                        title: "Event Management Assistants",
+                        description: "Event Support Staff Supply - Dedicated event assistants to manage crowd handling, registrations, coordination, and on-ground support for all types of events and functions.",
+                        features: ["Event crew", "Crowd management", "On-ground support"]
+                    },
+                    nonSkilledWorkforce: {
+                        title: "Non-Skilled Workforce (All Works)",
+                        description: "General Manpower Supply - Reliable non-skilled workforce for all types of general tasks. Ideal for cleaning, shifting, loading, helper roles, and temporary labor requirements.",
+                        features: ["Helper staff", "General labor", "Temporary workforce"]
                     }
                 },
                 whyChoose: {
@@ -281,6 +311,28 @@ const resources = {
                 message: "Message",
                 messagePlaceholder: "How can we help?",
                 send: "Send Message"
+            },
+            booking: {
+                title: "Instant",
+                titleHighlight: "Booking",
+                subtitle: "Professional cleaning service at your doorstep.",
+                nameLabel: "Your Name",
+                namePlaceholder: "John Doe",
+                phoneLabel: "Phone Number",
+                phonePlaceholder: "+49 170...",
+                locationLabel: "Service Location",
+                locationPlaceholder: "Enter address...",
+                currentLocation: "Current Location",
+                viewMap: "View Map",
+                dateLabel: "Date",
+                datePlaceholder: "Select date",
+                timeLabel: "Time",
+                serviceLabel: "Service Requested",
+                servicePlaceholder: "Service name...",
+                submitButton: "Confirm via WhatsApp",
+                mapAlert: "Please find your location on Google Maps, copy the address, and paste it here.",
+                locationError: "Unable to retrieve your location. Please check your browser permissions.",
+                geoError: "Geolocation is not supported by your browser"
             }
         }
     },
@@ -472,6 +524,36 @@ const resources = {
                         title: "Personalbereitstellung",
                         description: "Zuverlässige Personallösungen für Ihre Gebäudeanforderungen. Wir stellen qualifiziertes und geschultes Personal bereit.",
                         features: ["Fachkräftebereitstellung", "Allgemeines Reinigungspersonal", "Wartungspersonal"]
+                    },
+                    warehouseWorkers: {
+                        title: "Lagerarbeiter",
+                        description: "Lagerbelegschaft - Effiziente und zuverlässige Arbeitskräfte für reibungslose Lagerabläufe. Wir stellen geschulte Mitarbeiter für Bestandsführung, Verpackung, Verladung und Versand bereit.",
+                        features: ["Bestandsführung", "Verpackung & Sortierung", "Be- & Entladen"]
+                    },
+                    forkliftDrivers: {
+                        title: "Staplerfahrer",
+                        description: "Staplerfahrer-Service - Zertifizierte und erfahrene Gabelstaplerfahrer für den sicheren und effizienten Materialtransport. Unsere Fahrer sorgen für eine ordnungsgemäße Handhabung der Waren.",
+                        features: ["Zertifizierte Bediener", "Materialtransport", "Lagerlogistik"]
+                    },
+                    constructionWorkers: {
+                        title: "Bauarbeiter",
+                        description: "Bau-Personalgestellung - Fachkräfte und angelernte Kräfte für alle Arten von Bauprojekten. Von Wohn- bis zu Gewerbeprojekten bieten wir zuverlässiges Personal.",
+                        features: ["Fachkräfte", "Baustellenhelfer", "Projektunterstützung"]
+                    },
+                    servers: {
+                        title: "Servicekräfte (Hotel / Catering)",
+                        description: "Gastronomie-Personal - Professionelle und gut geschulte Servicekräfte für Hotels, Restaurants und Catering-Dienste. Wir sorgen für Qualität und Kundenzufriedenheit.",
+                        features: ["Hotelpersonal", "Event-Server", "Catering-Support"]
+                    },
+                    eventAssistants: {
+                        title: "Event-Management-Assistenten",
+                        description: "Event-Support-Personal - Engagierte Event-Assistenten für Crowd-Management, Registrierungen, Koordination und Unterstützung vor Ort für alle Arten von Veranstaltungen.",
+                        features: ["Event-Crew", "Crowd-Management", "On-Ground-Support"]
+                    },
+                    nonSkilledWorkforce: {
+                        title: "Ungelernte Arbeitskräfte (Alle Arbeiten)",
+                        description: "Allgemeine Personalgestellung - Zuverlässige ungelernte Arbeitskräfte für alle Arten von allgemeinen Aufgaben. Ideal für Reinigung, Umzüge, Verladung und Hilfstätigkeiten.",
+                        features: ["Hilfspersonal", "Allgemeine Arbeiten", "Temporäre Arbeitskräfte"]
                     }
                 },
                 whyChoose: {
@@ -562,10 +644,32 @@ const resources = {
                 message: "Nachricht",
                 messagePlaceholder: "Wie können wir helfen?",
                 send: "Nachricht senden"
+            },
+            booking: {
+                title: "Sofortige",
+                titleHighlight: "Buchung",
+                subtitle: "Professioneller Reinigungsservice vor Ihrer Haustür.",
+                nameLabel: "Ihr Name",
+                namePlaceholder: "Max Mustermann",
+                phoneLabel: "Telefonnummer",
+                phonePlaceholder: "+49 170...",
+                locationLabel: "Einsatzort",
+                locationPlaceholder: "Adresse eingeben...",
+                currentLocation: "Aktueller Standort",
+                viewMap: "Auf Karte zeigen",
+                dateLabel: "Datum",
+                datePlaceholder: "Datum wählen",
+                timeLabel: "Uhrzeit",
+                serviceLabel: "Gewünschter Service",
+                servicePlaceholder: "Service Name...",
+                submitButton: "Per WhatsApp bestätigen",
+                mapAlert: "Bitte suchen Sie Ihren Standort auf Google Maps, kopieren Sie die Adresse und fügen Sie sie hier ein.",
+                locationError: "Standort konnte nicht ermittelt werden. Bitte prüfen Sie Ihre Browser-Berechtigungen.",
+                geoError: "Geolokalisierung wird von Ihrem Browser nicht unterstützt"
             }
         }
     }
-};
+}
 
 i18n
     .use(LanguageDetector)

@@ -1,4 +1,4 @@
-import React, { useState, Suspense, lazy } from 'react';
+import React, { useState, Suspense, lazy, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import residentialImg from '../assets/residential_cleaning_1768327291773.png';
@@ -9,6 +9,12 @@ import outdoorImg from '../assets/outdoor_maintenance_1768327364134.png';
 import sanitationImg from '../assets/sanitation_hygiene_1768327387017.png';
 // Using logo or hero as fallback for manpower since generation failed, or reuse commercial which has people
 import manpowerImg from '../assets/commercial_cleaning_1768327306633.png';
+import warehouseWorkersImg from '../assets/warehouse_workers.png';
+import forkliftDriversImg from '../assets/forklift_drivers.png';
+import constructionWorkersImg from '../assets/construction_workers.png';
+import hospitalityStaffImg from '../assets/hospitality_staff.png';
+import eventStaffImg from '../assets/event_staff.png';
+import generalManpowerImg from '../assets/general_manpower.png';
 import heroBanner from '../assets/hero-banner.png';
 const BookingModal = lazy(() => import('../components/BookingModal'));
 
@@ -20,6 +26,74 @@ const Services = () => {
     const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
     const [selectedServiceForBooking, setSelectedServiceForBooking] = useState('');
     const [activeCard, setActiveCard] = useState(null);
+    const scrollRef = useRef(null);
+    const [isDragging, setIsDragging] = useState(false);
+    const [startX, setStartX] = useState(0);
+    const [scrollLeft, setScrollLeft] = useState(0);
+    const [mouseMoved, setMouseMoved] = useState(false);
+
+    const handleMouseDown = (e) => {
+        setMouseMoved(false);
+        setStartX(e.pageX - scrollRef.current.offsetLeft);
+        setScrollLeft(scrollRef.current.scrollLeft);
+    };
+
+    const handleMouseLeave = () => {
+        setIsDragging(false);
+    };
+
+    const handleMouseUp = () => {
+        setIsDragging(false);
+    };
+
+    const handleMouseMove = (e) => {
+        const x = e.pageX - scrollRef.current.offsetLeft;
+        const dist = Math.abs(x - startX);
+
+        if (dist > 5 && e.buttons === 1) { // Left mouse button down and moved
+            setIsDragging(true);
+            setMouseMoved(true);
+        }
+
+        if (!isDragging) return;
+
+        e.preventDefault();
+        const walk = (x - startX) * 2; // Scroll speed
+        scrollRef.current.scrollLeft = scrollLeft - walk;
+    };
+
+    const scrollManual = (direction) => {
+        if (scrollRef.current) {
+            const scrollAmount = 400;
+            scrollRef.current.scrollBy({
+                left: direction === 'left' ? -scrollAmount : scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+    };
+
+    const handleCardHover = (e) => {
+        if (isDragging || window.innerWidth < 768) return;
+        const card = e.currentTarget;
+        const container = scrollRef.current;
+        if (!container) return;
+
+        // Small delay to allow CSS transition to start so we can get more accurate dimensions
+        setTimeout(() => {
+            const cardRect = card.getBoundingClientRect();
+            const containerRect = container.getBoundingClientRect();
+
+            const cardCenter = cardRect.left + cardRect.width / 2;
+            const containerCenter = containerRect.left + containerRect.width / 2;
+
+            const scrollOffset = cardCenter - containerCenter;
+
+            container.scrollBy({
+                left: scrollOffset,
+                behavior: 'smooth'
+            });
+        }, 100);
+    };
 
     const openBookingModal = (e, serviceTitle) => {
         e.stopPropagation(); // Prevent card toggle when booking
@@ -94,6 +168,60 @@ const Services = () => {
             items: t('services.items.manpower.features', { returnObjects: true }) || [],
             image: manpowerImg,
             color: 'bg-indigo-50'
+        },
+        {
+            id: 'warehouse-workers',
+            category: 'Manpower',
+            title: t('services.items.warehouseWorkers.title'),
+            description: t('services.items.warehouseWorkers.description'),
+            items: t('services.items.warehouseWorkers.features', { returnObjects: true }) || [],
+            image: warehouseWorkersImg,
+            color: 'bg-amber-50'
+        },
+        {
+            id: 'forklift-drivers',
+            category: 'Manpower',
+            title: t('services.items.forkliftDrivers.title'),
+            description: t('services.items.forkliftDrivers.description'),
+            items: t('services.items.forkliftDrivers.features', { returnObjects: true }) || [],
+            image: forkliftDriversImg,
+            color: 'bg-orange-50'
+        },
+        {
+            id: 'construction-workers',
+            category: 'Manpower',
+            title: t('services.items.constructionWorkers.title'),
+            description: t('services.items.constructionWorkers.description'),
+            items: t('services.items.constructionWorkers.features', { returnObjects: true }) || [],
+            image: constructionWorkersImg,
+            color: 'bg-yellow-50'
+        },
+        {
+            id: 'hospitality-staff',
+            category: 'Manpower',
+            title: t('services.items.servers.title'),
+            description: t('services.items.servers.description'),
+            items: t('services.items.servers.features', { returnObjects: true }) || [],
+            image: hospitalityStaffImg,
+            color: 'bg-rose-50'
+        },
+        {
+            id: 'event-staff',
+            category: 'Manpower',
+            title: t('services.items.eventAssistants.title'),
+            description: t('services.items.eventAssistants.description'),
+            items: t('services.items.eventAssistants.features', { returnObjects: true }) || [],
+            image: eventStaffImg,
+            color: 'bg-purple-50'
+        },
+        {
+            id: 'general-manpower',
+            category: 'Manpower',
+            title: t('services.items.nonSkilledWorkforce.title'),
+            description: t('services.items.nonSkilledWorkforce.description'),
+            items: t('services.items.nonSkilledWorkforce.features', { returnObjects: true }) || [],
+            image: generalManpowerImg,
+            color: 'bg-gray-50'
         }
     ];
 
@@ -233,22 +361,56 @@ const Services = () => {
             </div>
 
             <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-24">
-                <div className="flex flex-col items-center mb-12 sm:mb-16 space-y-4 text-center">
-                    <span className="text-lime-600 font-bold tracking-widest uppercase text-xs sm:text-sm">{t('services.expertise')}</span>
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-medium text-gray-900">
-                        {t('services.title')}
-                    </h2>
+                <div className="flex flex-col md:flex-row items-center md:items-end justify-between mb-12 sm:mb-16 gap-4">
+                    <div className="text-center md:text-left space-y-4">
+                        <span className="text-lime-600 font-bold tracking-widest uppercase text-xs sm:text-sm">{t('services.expertise')}</span>
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-medium text-gray-900">
+                            {t('services.title')}
+                        </h2>
+                    </div>
+
+                    {/* Navigation Buttons */}
+                    <div className="hidden md:flex gap-3">
+                        <button
+                            onClick={() => scrollManual('left')}
+                            className="w-14 h-14 rounded-full border border-gray-200 flex items-center justify-center text-gray-900 hover:bg-gray-900 hover:text-white hover:border-gray-900 transition-all duration-300 group"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </button>
+                        <button
+                            onClick={() => scrollManual('right')}
+                            className="w-14 h-14 rounded-full border border-gray-200 flex items-center justify-center text-gray-900 hover:bg-gray-900 hover:text-white hover:border-gray-900 transition-all duration-300 group"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                    </div>
                 </div>
 
-                <div className="flex flex-col md:flex-row gap-4 md:gap-3 lg:gap-4 h-auto md:h-[650px] w-full items-stretch">
+                <div
+                    ref={scrollRef}
+                    onMouseDown={handleMouseDown}
+                    onMouseLeave={handleMouseLeave}
+                    onMouseUp={handleMouseUp}
+                    onMouseMove={handleMouseMove}
+                    className={`flex flex-col md:flex-row md:flex-nowrap gap-4 md:gap-3 lg:gap-4 h-auto md:h-[650px] w-full items-stretch md:overflow-x-auto md:pb-8 no-scrollbar ${isDragging ? 'cursor-grabbing select-none' : 'cursor-default'}`}
+                >
                     {filteredServices.map((service, index) => (
                         <div
                             key={service.id}
-                            onClick={() => setActiveCard(activeCard === service.id ? null : service.id)}
-                            className={`group relative rounded-[2.5rem] overflow-hidden transition-all duration-700 ease-in-out cursor-pointer
+                            onMouseEnter={handleCardHover}
+                            onClick={() => {
+                                if (!isDragging) {
+                                    setActiveCard(activeCard === service.id ? null : service.id);
+                                }
+                            }}
+                            className={`group relative rounded-[2.5rem] overflow-hidden transition-all duration-700 ease-in-out cursor-pointer flex-shrink-0
                                 h-[450px] sm:h-[550px] md:h-full
-                                w-full md:w-auto md:flex-1 md:hover:flex-[4]
-                                ${activeCard === service.id ? 'md:flex-[4]' : ''}`}
+                                w-full md:w-[150px] md:hover:w-[600px] lg:hover:w-[750px]
+                                ${activeCard === service.id ? 'md:w-[600px] lg:w-[750px]' : ''}`}
                         >
                             {/* Background Image & Overlay */}
                             <div className="absolute inset-0 bg-gray-900 z-0">
@@ -308,7 +470,7 @@ const Services = () => {
                                                     onClick={(e) => openBookingModal(e, service.title)}
                                                     className="w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 bg-lime-500 text-black font-extrabold rounded-2xl hover:bg-lime-400 transition-all duration-300 shadow-xl shadow-lime-900/20 active:scale-95 uppercase tracking-widest text-[10px] sm:text-xs"
                                                 >
-                                                    Book Now
+                                                    {t('services.hero.cta')}
                                                 </button>
                                             </div>
                                         </div>
