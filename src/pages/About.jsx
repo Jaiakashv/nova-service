@@ -293,7 +293,7 @@ const About = () => {
                         {/* Left Content */}
                         <div className="text-center md:text-left">
                             <motion.h2
-                                className="text-3xl md:text-5xl font-serif font-bold text-[#111827] mb-6"
+                                className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-[#111827] mb-6 leading-tight"
                                 initial={{ opacity: 0, x: -30 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
@@ -303,28 +303,53 @@ const About = () => {
                             </motion.h2>
 
                             <motion.p
-                                className="text-[#4B5563] leading-relaxed mb-4"
+                                className="text-[#4B5563] leading-relaxed mb-8 text-lg"
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.6, delay: 0.2 }}
                             >
-                                {t('about.story.text1')}{" "}
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#84CC16] to-[#059669] font-semibold">
-                                    {t('about.story.year')}
-                                </span>
-                                {t('about.story.text2')}
+                                {t('about.story.text')}
                             </motion.p>
 
-                            <motion.p
-                                className="text-[#4B5563] leading-relaxed mb-10"
+                            {/* NOVA Principle */}
+                            <motion.div
+                                className="mb-10 bg-gray-50 p-6 rounded-2xl border border-gray-100"
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6, delay: 0.3 }}
+                            >
+                                <h3 className="text-xl font-bold text-[#111827] mb-2">{t('about.story.principle.title')}</h3>
+                                <p className="text-sm text-gray-500 mb-6">{t('about.story.principle.subtitle')}</p>
+                                <div className="space-y-4">
+                                    {(t('about.story.principle.items', { returnObjects: true }) || []).map((item, idx) => (
+                                        <div key={idx} className="flex items-start gap-3">
+                                            <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-[#84CC16]/10 text-[#84CC16] font-bold">
+                                                {item.letter}
+                                            </span>
+                                            <div>
+                                                <span className="font-bold text-gray-900">{item.word}: </span>
+                                                <span className="text-gray-600">{item.desc}</span>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </motion.div>
+
+                            {/* Expansion Text */}
+                            <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.6, delay: 0.4 }}
+                                className="mb-10"
                             >
-                                {t('about.story.text3')}
-                            </motion.p>
+                                <h3 className="text-xl font-bold text-[#111827] mb-3">{t('about.story.expansion.title')}</h3>
+                                <p className="text-[#4B5563] leading-relaxed">
+                                    {t('about.story.expansion.text')}
+                                </p>
+                            </motion.div>
 
                             {/* Values */}
                             <div className="space-y-6">

@@ -105,7 +105,7 @@ const Home = () => {
                             </div>
 
                             <p className="text-[11px] text-gray-400 mt-2">
-                                12M+ Total Reviews
+                                {t('home.totalReviews')}
                             </p>
                         </div>
                     </div>
@@ -122,7 +122,7 @@ const Home = () => {
                             <Stars />
                         </div>
                         <p className="text-[10px] text-gray-400 mt-1">
-                            12M+ Total Reviews
+                            {t('home.totalReviews')}
                         </p>
                     </div>
 
@@ -238,7 +238,7 @@ const Home = () => {
                         onClick={handleBookNow}
                         className="bg-[#a3d937] hover:bg-[#92c530] text-black font-semibold px-8 py-3 rounded-full transition-colors"
                     >
-                        Book Now
+                        {t('home.bookNow')}
                     </button>
                 </div>
             </div>
@@ -305,31 +305,18 @@ const Home = () => {
                         </div>
                     </div>
 
-                    {/* 03/ Kitchen Cleaning */}
-                    <div className="col-span-1 md:col-span-9 group cursor-pointer relative overflow-hidden rounded-2xl md:rounded-3xl aspect-square md:aspect-[16/7]">
-                        <img
-                            src='https://promkraftinterior.com/wp-content/uploads/2021/11/kitchen-cleaning.jpg'
-                            alt="Kitchen Cleaning"
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        />
-                        <div className="absolute inset-x-0 bottom-0 bg-black/40 p-4">
-                            <p className="text-[8px] font-bold text-lime-400 mb-0.5">03</p>
-                            <p className="text-[10px] md:text-base font-bold text-white uppercase leading-none">
-                                {t('home.work.item03')}
-                            </p>
-                        </div>
-                    </div>
+
 
                     {/* Explore Services Box */}
                     <div
                         onClick={() => navigate('/services')}
-                        className="col-span-1 md:col-span-3 group cursor-pointer bg-white border-[#E5E5E5] border-[2px] rounded-2xl md:rounded-3xl p-4 md:p-6 flex flex-col items-center justify-center text-center transition-all aspect-square md:aspect-auto"
+                        className="col-span-2 md:col-span-12 group cursor-pointer bg-white border-[#E5E5E5] border-[2px] rounded-2xl md:rounded-3xl p-4 md:p-6 flex flex-col items-center justify-center text-center transition-all md:aspect-[16/3]"
                     >
                         <h3 className="text-2xl md:text-4xl font-black text-black leading-tight mb-2 md:mb-6">
                             20+
                         </h3>
                         <p className="text-[8px] md:text-xs font-bold text-gray-600 uppercase tracking-widest leading-tight mb-4">
-                            SERVICE YOU CAN EXPLORE
+                            {t('home.work.exploreText')}
                         </p>
                         <button
                             onClick={(e) => {
@@ -392,7 +379,7 @@ const Home = () => {
                         muted
                         playsInline
                     >
-                        Your browser does not support the video tag.
+                        {t('home.videoFallback')}
                     </video>
 
                 </div>

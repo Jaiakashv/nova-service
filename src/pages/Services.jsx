@@ -107,6 +107,15 @@ const Services = () => {
 
     const servicesList = [
         {
+            id: 'manpower',
+            category: 'Manpower',
+            title: t('services.items.manpower.title'),
+            description: t('services.items.manpower.description'),
+            items: t('services.items.manpower.features', { returnObjects: true }) || [],
+            image: manpowerImg,
+            color: 'bg-indigo-50'
+        },
+        {
             id: 'residential',
             category: 'Residential',
             title: t('services.items.residential.title'),
@@ -159,15 +168,6 @@ const Services = () => {
             items: t('services.items.sanitation.features', { returnObjects: true }) || [],
             image: sanitationImg,
             color: 'bg-cyan-50'
-        },
-        {
-            id: 'manpower',
-            category: 'Manpower',
-            title: t('services.items.manpower.title'),
-            description: t('services.items.manpower.description'),
-            items: t('services.items.manpower.features', { returnObjects: true }) || [],
-            image: manpowerImg,
-            color: 'bg-indigo-50'
         },
         {
             id: 'warehouse-workers',
@@ -330,10 +330,10 @@ const Services = () => {
                     {/* Repeated for smooth infinite scroll */}
                     {[1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4].map((i, idx) => (
                         <div key={idx} className="flex items-center gap-2">
-                            {i === 1 && <span className="font-serif text-lg sm:text-xl font-bold tracking-widest text-gray-400">ISO<span className="text-gray-300 font-light">9001</span></span>}
-                            {i === 2 && <span className="font-serif text-lg sm:text-xl font-bold tracking-widest text-gray-400">ECO<span className="text-lime-400">FRIENDLY</span></span>}
-                            {i === 3 && <span className="font-serif text-lg sm:text-xl font-bold tracking-widest text-gray-400">CERTIFIED<span className="text-gray-300 font-light">PRO</span></span>}
-                            {i === 4 && <span className="font-serif text-lg sm:text-xl font-bold tracking-widest text-gray-400">SAFETY<span className="text-blue-300 font-light">FIRST</span></span>}
+                            {i === 1 && <span className="font-serif text-lg sm:text-xl font-bold tracking-widest text-gray-400">{t('services.ticker.iso')}<span className="text-gray-300 font-light">{t('services.ticker.isoSuffix')}</span></span>}
+                            {i === 2 && <span className="font-serif text-lg sm:text-xl font-bold tracking-widest text-gray-400">{t('services.ticker.eco')}<span className="text-lime-400">{t('services.ticker.ecoSuffix')}</span></span>}
+                            {i === 3 && <span className="font-serif text-lg sm:text-xl font-bold tracking-widest text-gray-400">{t('services.ticker.certified')}<span className="text-gray-300 font-light">{t('services.ticker.certifiedSuffix')}</span></span>}
+                            {i === 4 && <span className="font-serif text-lg sm:text-xl font-bold tracking-widest text-gray-400">{t('services.ticker.safety')}<span className="text-blue-300 font-light">{t('services.ticker.safetySuffix')}</span></span>}
                         </div>
                     ))}
                 </div>
@@ -674,7 +674,7 @@ const Services = () => {
             {/* FAQ Section */}
             <div className="mt-24 sm:mt-32 max-w-7xl mx-auto px-6 sm:px-12 lg:px-24">
                 <div className="text-center mb-12 sm:mb-16 space-y-4">
-                    <span className="text-lime-600 font-bold tracking-widest uppercase text-xs sm:text-sm">Support</span>
+                    <span className="text-lime-600 font-bold tracking-widest uppercase text-xs sm:text-sm">{t('services.faq.supportLabel')}</span>
                     <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-gray-900">{t('services.faq.title')}</h2>
                     <p className="text-lg sm:text-xl text-gray-500">{t('services.faq.subtitle')}</p>
                 </div>

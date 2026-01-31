@@ -21,11 +21,22 @@ const resources = {
                     subtitle: "Germany's premium cleaning service delivering eco-friendly excellence since 2015."
                 },
                 story: {
-                    title: "Our Story",
-                    text1: "Founded in Munich in",
-                    year: "2015",
-                    text2: ", Nova Service began with a simple mission: to deliver exceptional cleaning services that exceed expectations. What started as a small team has grown into one of Germany's most trusted cleaning brands.",
-                    text3: "Today, we serve residential and commercial clients across Germany, staying true to our values of quality, reliability, and environmental responsibility."
+                    title: "Nova Service: Excellence that goes beyond cleaning",
+                    text: "In 2015 in Berlin, the founder of Nova Service started with a clear mission: to deliver exceptional cleaning services that not only meet but exceed expectations. What began as a small, dedicated team has today developed into one of Germany's most trusted brands.",
+                    principle: {
+                        title: "What we stand for: The NOVA Principle",
+                        subtitle: "Our name is no coincidence, but a promise. NOVA defines our daily way of working:",
+                        items: [
+                            { letter: "N", word: "New", desc: "We think processes fresh and innovative." },
+                            { letter: "O", word: "Optimized", desc: "Efficiency and highest quality come first." },
+                            { letter: "V", word: "Responsible", desc: "We act sustainably towards the environment and society." },
+                            { letter: "A", word: "Ambitious", desc: "We are never satisfied with the status quo." }
+                        ]
+                    },
+                    expansion: {
+                        title: "More than just cleanliness: Your partner for skilled personnel",
+                        text: "Today Nova Service is far more than a classic cleaning service. We have developed into a professional personnel agency that convinces through first-class quality."
+                    }
                 },
                 values: {
                     title: "Our Values",
@@ -99,15 +110,20 @@ const resources = {
                     deep: "Deep Cleaning",
                     move: "Move In/Out"
                 },
+                bookNow: "Book Now",
+                totalReviews: "12M+ Total Reviews",
+                videoFallback: "Your browser does not support the video tag.",
                 work: {
                     title: "OUR",
                     titleHighlight: "WORK",
                     titleEnd: "THAT WE DO",
-                    description: "discover the joy of a pristine space with SupremeShine Cleaning Services. Contact us Today to schedule your cleaning appointment and experience",
+                    description: "discover the joy of a pristine space with Nova Service. Contact us Today to schedule your cleaning appointment and experience",
                     item01: "COMMERCIAL CLEANING",
                     item02: "REGULAR CLEANING",
                     item03: "KITCHEN CLEANING",
-                    explore: "25+ SERVICES YOU CAN EXPLORE"
+                    item03: "KITCHEN CLEANING",
+                    explore: "25+ SERVICES YOU CAN EXPLORE",
+                    exploreText: "SERVICE YOU CAN EXPLORE"
                 },
                 game: {
                     status: "Status",
@@ -136,6 +152,12 @@ const resources = {
                 designer: "LEPTOTECH.COM"
             },
             services: {
+                ticker: {
+                    iso: "ISO", isoSuffix: "9001",
+                    eco: "ECO", ecoSuffix: "FRIENDLY",
+                    certified: "CERTIFIED", certifiedSuffix: "PRO",
+                    safety: "SAFETY", safetySuffix: "FIRST"
+                },
                 title: "Our Services",
                 subtitle: "Curated Cleaning Services",
                 expertise: "Our Expertise",
@@ -281,6 +303,7 @@ const resources = {
                     subtitle: "Find answers to your specific service questions.",
                     stillHaveQuestions: "Still have questions?",
                     contactSupport: "Contact our support team 24/7 for immediate assistance.",
+                    supportLabel: "SUPPORT",
                     noGeneric: "No generic FAQs for this specific category found.",
                     items: [
                         { category: 'All', q: "Are your cleaners insured?", a: "Yes, all our staff are fully insured and background-checked for your peace of mind." },
@@ -354,11 +377,22 @@ const resources = {
                     subtitle: "Deutschlands Premium-Reinigungsdienst liefert umweltfreundliche Exzellenz seit 2015."
                 },
                 story: {
-                    title: "Unsere Geschichte",
-                    text1: "Gegründet in München im Jahr",
-                    year: "2015",
-                    text2: ", begann Nova Service mit einer einfachen Mission: außergewöhnliche Reinigungsdienste zu liefern, die Erwartungen übertreffen. Was als kleines Team begann, hat sich zu einer der vertrauenswürdigsten Reinigungsmarken Deutschlands entwickelt.",
-                    text3: "Heute bedienen wir Privat- und Geschäftskunden in ganz Deutschland und bleiben unseren Werten Qualität, Zuverlässigkeit und Umweltverantwortung treu."
+                    title: "Nova Service: Exzellenz, die über die Reinigung hinausgeht",
+                    text: "Im Jahr 2015 in Berlin, startete der Gründer von Nova Service mit einer klaren Mission: außergewöhnliche Reinigungsdienste zu liefern, die Erwartungen nicht nur erfüllen, sondern übertreffen. Was als kleines, engagiertes Team begann, hat sich heute zu einer der vertrauenswürdigsten Marken Deutschlands entwickelt.",
+                    principle: {
+                        title: "Wofür wir stehen: Das NOVA-Prinzip",
+                        subtitle: "Unser Name ist für uns kein Zufall, sondern ein Versprechen. NOVA definiert unsere tägliche Arbeitsweise:",
+                        items: [
+                            { letter: "N", word: "Neu", desc: "Wir denken Prozesse frisch und innovativ." },
+                            { letter: "O", word: "Optimiert", desc: "Effizienz und höchste Qualität stehen an erster Stelle." },
+                            { letter: "V", word: "Verantwortungsvoll", desc: "Wir handeln nachhaltig gegenüber Umwelt und Gesellschaft." },
+                            { letter: "A", word: "Ambitioniert", desc: "Wir geben uns nie mit dem Status quo zufrieden." }
+                        ]
+                    },
+                    expansion: {
+                        title: "Mehr als nur Sauberkeit: Ihr Partner für Fachpersonal",
+                        text: "Heute ist Nova Service weit mehr als ein klassischer Reinigungsdienst. Wir haben uns zu einer professionellen Personalvermittlung entwickelt, die durch erstklassige Qualität überzeugt."
+                    }
                 },
                 values: {
                     title: "Unsere Werte",
@@ -414,7 +448,7 @@ const resources = {
                 }
             },
             home: {
-                title: "PREMIER",
+                title: "ERSTKLASSIGE",
                 titleHighlight: "REINIGUNG",
                 titleEnd: "LÖSUNG",
                 reviewText: "BESTE REINIGUNGSDIENSTE FÜR IHR UNTERNEHMEN UND ZUHAUSE",
@@ -432,18 +466,23 @@ const resources = {
                     deep: "Tiefenreinigung",
                     move: "Einzug/Auszug"
                 },
+                bookNow: "Jetzt buchen",
+                totalReviews: "12M+ Bewertungen",
+                videoFallback: "Ihr Browser unterstützt das Video-Tag nicht.",
                 work: {
                     title: "UNSERE",
                     titleHighlight: "ARBEIT",
                     titleEnd: "DIE WIR TUN",
-                    description: "Entdecken Sie die Freude an einem makellosen Raum mit SupremeShine Cleaning Services. Kontaktieren Sie uns noch heute, um Ihren Reinigungstermin zu vereinbaren.",
+                    description: "Entdecken Sie die Freude an einem makellosen Raum mit Nova Service. Kontaktieren Sie uns noch heute, um Ihren Reinigungstermin zu vereinbaren.",
                     item01: "GEWERBEREINIGUNG",
                     item02: "REGELMÄSSIGE REINIGUNG",
                     item03: "KÜCHENREINIGUNG",
-                    explore: "25+ DIENSTLEISTUNGEN ENTDECKEN"
+                    item03: "KÜCHENREINIGUNG",
+                    explore: "25+ DIENSTLEISTUNGEN ENTDECKEN",
+                    exploreText: "DIENSTLEISTUNGEN ENTDECKEN"
                 },
                 game: {
-                    status: "Status",
+                    status: "Zustand",
                     progress: "Reinigung",
                     successTitle: "Gute Arbeit!",
                     successText: "So reinigen wir professionell.",
@@ -462,13 +501,19 @@ const resources = {
                 }
             },
             footer: {
-                premier: "PREMIER",
+                premier: "ERSTKLASSIGE",
                 cleaning: "REINIGUNG",
                 copyright: "@NOVA SERVICE. ALLE RECHTE VORBEHALTEN",
                 design: "DESIGN VON ",
                 designer: "LEPTOTECH.COM"
             },
             services: {
+                ticker: {
+                    iso: "ISO", isoSuffix: "9001",
+                    eco: "UMWELT", ecoSuffix: "FREUNDLICH",
+                    certified: "ZERTIFIZIERT", certifiedSuffix: "PRO",
+                    safety: "SICHERHEIT", safetySuffix: "ZUERST"
+                },
                 title: "Unsere Dienstleistungen",
                 subtitle: "Kuratierte Reinigungsdienste",
                 expertise: "Unsere Kompetenz",
@@ -614,6 +659,7 @@ const resources = {
                     subtitle: "Finden Sie Antworten auf Ihre spezifischen Fragen.",
                     stillHaveQuestions: "Haben Sie noch Fragen?",
                     contactSupport: "Kontaktieren Sie unser Support-Team rund um die Uhr für sofortige Hilfe.",
+                    supportLabel: "KUNDENSERVICE",
                     noGeneric: "Keine allgemeinen FAQs für diese spezifische Kategorie gefunden.",
                     items: [
                         { category: 'All', q: "Sind Ihre Reinigungskräfte versichert?", a: "Ja, alle unsere Mitarbeiter sind voll versichert und hintergrundüberprüft." },
